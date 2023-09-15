@@ -4,7 +4,10 @@
  */
 package CapaPresentacion;
 
+import CapaDatos.TipoUsuario;
 import CapaNegocio.TipoUsuarioBD;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,8 +22,9 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
      */
     public TipoUsuario_IU() {
         initComponents();
+        reportar();
     }
-    
+
     private void reportar() {
         try {
             setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
@@ -37,26 +41,24 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-    
-    
+
     private void limpiar() {
         txtNombre.setText("");
         txtCantidad.setText("");
         txtCodigo.setText("");
     }
-    
+
     private void exito(String mensaje) {
-        JOptionPane.showConfirmDialog(this, mensaje, "MENSAJE",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showConfirmDialog(this, mensaje, "MENSAJE", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     private void error(String mensaje) {
-        JOptionPane.showConfirmDialog(this, mensaje, "Error",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showConfirmDialog(this, mensaje, "Error", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
     }
-    
+
     private void advertencia(String mensaje) {
-        JOptionPane.showConfirmDialog(this, mensaje, "ADVERTENCIA",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showConfirmDialog(this, mensaje, "ADVERTENCIA", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,7 +92,25 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
 
         jLabel1.setText("CODIGO:");
 
+        txtCodigo.setEditable(false);
+
         jLabel2.setText("NOMBRE:");
+
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNombreFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreFocusLost(evt);
+            }
+        });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
+        });
+
+        txtCantidad.setEditable(false);
 
         jLabel3.setText("CANTIDAD:");
 
@@ -141,21 +161,46 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        Tabla_Reporte_TipoUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Tabla_Reporte_TipoUsuarioMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabla_Reporte_TipoUsuario);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar.png"))); // NOI18N
         btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lapiz.png"))); // NOI18N
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar.png"))); // NOI18N
         btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
         btnCerrar.setText("CERRAR");
@@ -227,6 +272,119 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        if (txtNombre.getText().length() > 0) {
+            if (txtCodigo.getText().length() == 0) {
+                TipoUsuario oTipoUsuario = new TipoUsuario();
+                TipoUsuarioBD oTipoUsuarioBD = new TipoUsuarioBD();
+                
+                oTipoUsuario.setTuNombre(txtNombre.getText().trim().toUpperCase());
+                
+                boolean rpta= oTipoUsuarioBD.registrarTipoUsuario(oTipoUsuario);
+                
+                if (rpta) {
+                    exito("Se Registro Correctamente");
+                    reportar();
+                    limpiar();
+                } else {
+                    error("Tienes Problemas al Registres");
+                }
+
+            } else {
+                error("No puedes Registrar porque Existe...");
+            }
+
+        } else {
+            error("Ingresa el Nombre");
+            txtNombre.requestFocus();
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void Tabla_Reporte_TipoUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_Reporte_TipoUsuarioMousePressed
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            int fila_seleccionada = Tabla_Reporte_TipoUsuario.getSelectedRow();
+            
+            txtCodigo.setText(Tabla_Reporte_TipoUsuario.getValueAt(fila_seleccionada, 0).toString());
+            txtNombre.setText(Tabla_Reporte_TipoUsuario.getValueAt(fila_seleccionada, 1).toString());
+        }
+    }//GEN-LAST:event_Tabla_Reporte_TipoUsuarioMousePressed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        if (txtCodigo.getText().length() > 0) {
+            if (txtCodigo.getText().length() > 0) {
+                TipoUsuario oTipoUsuario = new TipoUsuario();
+                TipoUsuarioBD oTipoUsuarioBD = new  TipoUsuarioBD();
+                
+                oTipoUsuario.setIdtipousuario(Integer.parseInt(txtCodigo.getText().trim()));
+                oTipoUsuario.setTuNombre(txtNombre.getText().trim().toUpperCase());
+                
+                boolean rpta = oTipoUsuarioBD.modificarTipoUsuario(oTipoUsuario);
+                if (rpta) {
+                    exito("Se Modifico con Exito");
+                    reportar();
+                    limpiar();
+                } else {
+                    error("Tienes Problemas al MOdificar");
+                }  
+            } else {
+                error("Ingresa el Nombre");
+            }
+        } else {
+            error("No existe el Codigo al Modificar");
+        }
+        
+        
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        if (txtCodigo.getText().length()>0) {
+            int aviso = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de Eliminar");
+            if (aviso==0) {
+                int codigo = Integer.parseInt(txtCodigo.getText().trim());
+                TipoUsuarioBD oTipoUsuarioBD = new TipoUsuarioBD();
+                TipoUsuario oTipoUsuario = new TipoUsuario();
+                
+                oTipoUsuario.setIdtipousuario(codigo);
+                boolean rpta = oTipoUsuarioBD.eliminarTipoUsuario(oTipoUsuario);
+                if (rpta) {
+                    exito("Se elimino Correctamente");
+                    reportar();
+                    limpiar();
+                } else {
+                    error("Hay problemas...");
+                }
+            }
+        } else {
+            error("Falta Codigo");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
+        // TODO add your handling code here:
+        txtNombre.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtNombreFocusGained
+
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+        // TODO add your handling code here:
+        txtNombre.setBackground(Color.white);
+    }//GEN-LAST:event_txtNombreFocusLost
+
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             btnRegistrar.requestFocus();
+        }
+    }//GEN-LAST:event_txtNombreKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
