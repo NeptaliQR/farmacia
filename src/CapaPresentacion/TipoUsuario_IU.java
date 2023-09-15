@@ -86,6 +86,9 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
         btnLimpiar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
         setTitle("TIPO DE USUARIOS");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -204,6 +207,11 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
         btnCerrar.setText("CERRAR");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -385,6 +393,11 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
              btnRegistrar.requestFocus();
         }
     }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
