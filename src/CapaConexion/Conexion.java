@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class Conexion {
     private static String clase = "com.mysql.cj.jdbc.Driver";
 
-    private static String url = "jdbc:mysql://localhost:3307/farmacia?serverTimezone=UTC";
+    private static String url = "startus";
     private static String usuario = "root";
     private static String clave = "123456";
 
