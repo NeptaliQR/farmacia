@@ -51,6 +51,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         menu_item_tipoUsuario = new javax.swing.JMenuItem();
         menu_item_Usuario = new javax.swing.JMenuItem();
+        menu_item_Turno = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -141,6 +142,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu6.add(menu_item_Usuario);
 
+        menu_item_Turno.setText("Turno");
+        menu_item_Turno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_item_TurnoActionPerformed(evt);
+            }
+        });
+        jMenu6.add(menu_item_Turno);
+
         jMenuBar2.add(jMenu6);
 
         jMenu7.setText("COMPRAS");
@@ -190,6 +199,16 @@ public class Menu extends javax.swing.JFrame {
         frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         frame.show();                                        
     }//GEN-LAST:event_menu_item_UsuarioActionPerformed
+
+    private void menu_item_TurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_TurnoActionPerformed
+        // TODO add your handling code here:
+        Turno_IU frame = new Turno_IU();
+        escritorio.add(frame);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        frame.show();    
+    }//GEN-LAST:event_menu_item_TurnoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,6 +271,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JMenuItem menu_item_Turno;
     private javax.swing.JMenuItem menu_item_Usuario;
     private javax.swing.JMenuItem menu_item_tipoUsuario;
     // End of variables declaration//GEN-END:variables
