@@ -33,129 +33,129 @@ public class Menu extends javax.swing.JFrame {
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator9 = new javax.swing.JSeparator();
         escritorio = new javax.swing.JDesktopPane();
-        jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
+        jToolBar2 = new javax.swing.JToolBar();
+        btnProductos = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        jButton2 = new javax.swing.JButton();
+        btnCompras = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        jButton3 = new javax.swing.JButton();
+        btnIngresos = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
-        jButton4 = new javax.swing.JButton();
+        btnEgresos = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JToolBar.Separator();
-        jButton5 = new javax.swing.JButton();
+        btnVentas = new javax.swing.JButton();
         jSeparator7 = new javax.swing.JToolBar.Separator();
-        jButton6 = new javax.swing.JButton();
+        btnCaja = new javax.swing.JButton();
         jSeparator10 = new javax.swing.JToolBar.Separator();
         jButton7 = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu6 = new javax.swing.JMenu();
+        menu_item_tipoUsuario = new javax.swing.JMenuItem();
+        menu_item_Usuario = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
-        TipoUsuario = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jToolBar1.setRollover(true);
+        jToolBar2.setRollover(true);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/box.png"))); // NOI18N
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
-        jToolBar1.add(jSeparator1);
+        btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/box.png"))); // NOI18N
+        btnProductos.setFocusable(false);
+        btnProductos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProductos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btnProductos);
+        jToolBar2.add(jSeparator1);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/compra.png"))); // NOI18N
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton2);
-        jToolBar1.add(jSeparator3);
+        btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/compra.png"))); // NOI18N
+        btnCompras.setFocusable(false);
+        btnCompras.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCompras.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btnCompras);
+        jToolBar2.add(jSeparator3);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ingresos.png"))); // NOI18N
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton3);
-        jToolBar1.add(jSeparator4);
+        btnIngresos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ingresos.png"))); // NOI18N
+        btnIngresos.setFocusable(false);
+        btnIngresos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnIngresos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btnIngresos);
+        jToolBar2.add(jSeparator4);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/egresos.png"))); // NOI18N
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton4);
-        jToolBar1.add(jSeparator6);
+        btnEgresos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/egresos.png"))); // NOI18N
+        btnEgresos.setFocusable(false);
+        btnEgresos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEgresos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btnEgresos);
+        jToolBar2.add(jSeparator6);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/venta1.png"))); // NOI18N
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton5);
-        jToolBar1.add(jSeparator7);
+        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/venta1.png"))); // NOI18N
+        btnVentas.setFocusable(false);
+        btnVentas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVentas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btnVentas);
+        jToolBar2.add(jSeparator7);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caja_1.png"))); // NOI18N
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton6);
-        jToolBar1.add(jSeparator10);
+        btnCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caja_1.png"))); // NOI18N
+        btnCaja.setFocusable(false);
+        btnCaja.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCaja.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btnCaja);
+        jToolBar2.add(jSeparator10);
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar2.png"))); // NOI18N
         jButton7.setFocusable(false);
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton7);
+        jToolBar2.add(jButton7);
 
-        escritorio.setLayer(jToolBar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jToolBar2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+            .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 354, Short.MAX_VALUE))
+                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 517, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("MANTENIMIENTO");
+        jMenu6.setText("MANTENIMIENTO");
 
-        TipoUsuario.setText("Tipo de Usuario");
-        TipoUsuario.addActionListener(new java.awt.event.ActionListener() {
+        menu_item_tipoUsuario.setText("Tipo de Usuario");
+        menu_item_tipoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TipoUsuarioActionPerformed(evt);
+                menu_item_tipoUsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(TipoUsuario);
+        jMenu6.add(menu_item_tipoUsuario);
 
-        jMenuItem1.setText("Usuario");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menu_item_Usuario.setText("Usuario");
+        menu_item_Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menu_item_UsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu6.add(menu_item_Usuario);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar2.add(jMenu6);
 
-        jMenu2.setText("COMPRAS");
-        jMenuBar1.add(jMenu2);
+        jMenu7.setText("COMPRAS");
+        jMenuBar2.add(jMenu7);
 
-        jMenu3.setText("INVENTARIO");
-        jMenuBar1.add(jMenu3);
+        jMenu8.setText("INVENTARIO");
+        jMenuBar2.add(jMenu8);
 
-        jMenu4.setText("VENTAS");
-        jMenuBar1.add(jMenu4);
+        jMenu1.setText("VENTAS");
+        jMenuBar2.add(jMenu1);
 
-        jMenu5.setText("CAJAS");
-        jMenuBar1.add(jMenu5);
+        jMenu2.setText("CAJA");
+        jMenuBar2.add(jMenu2);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,13 +165,13 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoUsuarioActionPerformed
+    private void menu_item_tipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_tipoUsuarioActionPerformed
         // TODO add your handling code here:
         TipoUsuario_IU frame = new TipoUsuario_IU();
         escritorio.add(frame);
@@ -179,17 +179,17 @@ public class Menu extends javax.swing.JFrame {
         Dimension FrameSize = frame.getSize();
         frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         frame.show();
-    }//GEN-LAST:event_TipoUsuarioActionPerformed
+    }//GEN-LAST:event_menu_item_tipoUsuarioActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menu_item_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_item_UsuarioActionPerformed
         // TODO add your handling code here:
         Usuario_IU frame = new Usuario_IU();
         escritorio.add(frame);
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = frame.getSize();
         frame.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        frame.show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        frame.show();                                        
+    }//GEN-LAST:event_menu_item_UsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,22 +227,20 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem TipoUsuario;
+    private javax.swing.JButton btnCaja;
+    private javax.swing.JButton btnCompras;
+    private javax.swing.JButton btnEgresos;
+    private javax.swing.JButton btnIngresos;
+    private javax.swing.JButton btnProductos;
+    private javax.swing.JButton btnVentas;
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
@@ -253,6 +251,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JMenuItem menu_item_Usuario;
+    private javax.swing.JMenuItem menu_item_tipoUsuario;
     // End of variables declaration//GEN-END:variables
 }
