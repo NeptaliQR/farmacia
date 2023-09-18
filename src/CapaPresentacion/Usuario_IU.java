@@ -162,6 +162,12 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabla_reporte_usuarios);
 
+        txtBuscar_Apellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscar_ApellidosKeyPressed(evt);
+            }
+        });
+
         jLabel9.setText("BUSCAR APELLIDOS:");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
@@ -585,6 +591,32 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtBuscar_ApellidosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscar_ApellidosKeyPressed
+        // TODO add your handling code here:
+        
+        try {
+            setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+            DefaultTableModel tabla_temporal;
+            
+            String apellidos = txtBuscar_Apellidos.getText();
+            
+            UsuarioBD objeto_UsuarioBD = new UsuarioBD();
+            
+            tabla_temporal = objeto_UsuarioBD.buscarUsuario(apellidos);
+            tabla_reporte_usuarios.setModel(tabla_temporal);
+            
+            int canLista = tabla_temporal.getRowCount();
+            txtCantidad.setText("" + canLista);
+            
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            
+        } catch (Exception ex) {
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            ex.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_txtBuscar_ApellidosKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

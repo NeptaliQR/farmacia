@@ -4,6 +4,10 @@
  */
 package CapaPresentacion;
 
+import CapaDatos.Turno;
+import CapaNegocio.TurnoBD;
+import CapaNegocio.UsuarioBD;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -11,20 +15,71 @@ import javax.swing.table.DefaultTableModel;
  * @author labor
  */
 public class Turno_IU extends javax.swing.JInternalFrame {
-    int fila_seleccionada= -1;
+
+    int fila_seleccionada = -1;
 
     /**
      * Creates new form Turno_IU
      */
     public Turno_IU() {
         initComponents();
+        reporte();
     }
-    
-    private void limpiar_tabla_formulario(){
+
+    private void limpiar_tabla_formulario() {
         DefaultTableModel tabla_temporal_turno = (DefaultTableModel) tabla_reporte_turno.getModel();
         tabla_temporal_turno.setRowCount(0);
     }
-    
+
+    private void reporte() {
+        try {
+            setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+            limpiar_tabla_formulario();
+            DefaultTableModel tabla_temporal_turno = (DefaultTableModel) tabla_reporte_turno.getModel();
+
+            DefaultTableModel tabla_temporal;
+            TurnoBD oTurnoBD = new TurnoBD();
+            tabla_temporal = oTurnoBD.reportarTurno();
+            int cant = tabla_temporal.getRowCount();
+            for (int i = 0; i < cant; i++) {
+                int idturno = Integer.parseInt(tabla_temporal.getValueAt(i, 0).toString());
+                String descripcion = tabla_temporal.getValueAt(i, 1).toString();
+                String inicio = tabla_temporal.getValueAt(i, 2).toString();
+                String fin = tabla_temporal.getValueAt(i, 3).toString();
+                String uDni = tabla_temporal.getValueAt(i, 4).toString();
+                Object[] data = {idturno, descripcion, inicio, fin, uDni};
+                tabla_temporal_turno.addRow(data);
+            }
+            tabla_reporte_turno.setModel(tabla_temporal_turno);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        } catch (Exception e) {
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            e.printStackTrace();
+        }
+
+    }
+
+    private void limpiar() {
+        txtDni.setText("");
+        txtUsuario.setText("");
+        txtHoraInicio.setText("");
+        txtHoraFinal.setText("");
+        cmbTurno.setSelectedItem(0);
+        fila_seleccionada = -1;
+
+    }
+
+    private void exito(String mensaje) {
+        JOptionPane.showConfirmDialog(this, mensaje, "MENSAJE", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void error(String mensaje) {
+        JOptionPane.showConfirmDialog(this, mensaje, "Error", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void advertencia(String mensaje) {
+        JOptionPane.showConfirmDialog(this, mensaje, "ADVERTENCIA", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,19 +96,21 @@ public class Turno_IU extends javax.swing.JInternalFrame {
         txtDni = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtBuscar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtHoraInicio = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtHoraFinal = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbTurno = new javax.swing.JComboBox<>();
         btnRegistrar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_reporte_turno = new javax.swing.JTable();
         btnCerrar = new javax.swing.JButton();
+
+        setTitle("Turno");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Usuario"));
         jPanel2.setToolTipText("");
@@ -64,7 +121,13 @@ public class Turno_IU extends javax.swing.JInternalFrame {
 
         txtUsuario.setEditable(false);
 
-        txtBuscar.setText("BUSCAR");
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.gif"))); // NOI18N
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -80,7 +143,7 @@ public class Turno_IU extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(txtUsuario))
                 .addContainerGap())
@@ -92,7 +155,7 @@ public class Turno_IU extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBuscar))
+                    .addComponent(btnBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -108,11 +171,23 @@ public class Turno_IU extends javax.swing.JInternalFrame {
 
         jLabel5.setText("TURNO:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar turno", "TURNO 1", "TURNO 2", "TURNO 3", "TURNO 4" }));
+        cmbTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar turno", "TURNO 1", "TURNO 2", "TURNO 3", "TURNO 4" }));
 
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/database.png"))); // NOI18N
         btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cancel.png"))); // NOI18N
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -130,7 +205,7 @@ public class Turno_IU extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -147,7 +222,7 @@ public class Turno_IU extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnEliminar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -164,6 +239,11 @@ public class Turno_IU extends javax.swing.JInternalFrame {
                 "ID", "DESCRIPCION", "HORA INICIO", "HORA FINAL", "USUARIO"
             }
         ));
+        tabla_reporte_turno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabla_reporte_turnoMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla_reporte_turno);
 
         btnCerrar.setText("CERRAR");
@@ -210,12 +290,111 @@ public class Turno_IU extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (txtDni.getText().length() > 0) {
+                DefaultTableModel tabla_temporal;
+                UsuarioBD o_UsuarioBD = new UsuarioBD();
+                tabla_temporal = o_UsuarioBD.buscarUsuarioXdni(txtDni.getText());
+                int cant = tabla_temporal.getRowCount();
+                if (cant > 0) {
+                    String nombre = tabla_temporal.getValueAt(0, 1).toString();
+                    String apellidos = tabla_temporal.getValueAt(0, 2).toString();
+                    txtUsuario.setText(apellidos + " " + nombre);
+                } else {
+                    advertencia("no ecxiste este usuario");
+                    txtDni.setText("");
+                    txtDni.requestFocus();
+                }
+            } else {
+                advertencia("tienes que ingresar un dni");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "error al intentar buscar usuario", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (txtDni.getText().length() > 0) {
+                if (txtHoraInicio.getText().length() > 0) {
+                    if (txtHoraFinal.getText().length() > 0) {
+                        if (!cmbTurno.getSelectedItem().equals("Seleccionar turno")) {
+                            Turno o_Turno = new Turno();
+                            TurnoBD o_TurnoBD = new TurnoBD();
+                            o_Turno.setDescripcion(cmbTurno.getSelectedItem().toString());
+                            o_Turno.setInicio(txtHoraInicio.getText());
+                            o_Turno.setFin(txtHoraFinal.getText());
+                            o_Turno.setuDniT(txtDni.getText());
+                            boolean rpta = o_TurnoBD.registrarTurno(o_Turno);
+                            if (rpta) {
+                                exito("Se registro con ecxito");
+                                reporte();
+                                limpiar();
+                            } else {
+                                error("Tienes problemas para registrar");
+                            }
+
+                        } else {
+                            advertencia("Seleccione un turno");
+                            cmbTurno.requestFocus();
+                        }
+                    } else {
+                        advertencia("Ingrese la hora final");
+                        txtHoraFinal.requestFocus();
+                    }
+                } else {
+                    advertencia("Ingrese la hora de inicio");
+                    txtHoraInicio.requestFocus();
+                }
+            } else {
+                advertencia("Ingrese su dni");
+                txtDni.requestFocus();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "Error al registrar turno", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        if (fila_seleccionada > -1) {
+            int aviso = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de eliminar a la fila" + fila_seleccionada);
+            if (aviso == 0) {
+                TurnoBD o_TurnoBD = new TurnoBD();
+                int idturno = Integer.parseInt(tabla_reporte_turno.getValueAt(fila_seleccionada, 0).toString());
+                boolean rpta = o_TurnoBD.eliminarTurno(idturno);
+                if (rpta) {
+                    exito("SE ELIMINO CORRECTAMENTE");
+                    reporte();
+                    limpiar();
+                } else {
+                    error("TIENES PROBLEMAS AL ELIMINAR");
+                }
+
+            } else {
+                advertencia("TIENES QUE SELECCIONAR UNA FILA");
+            }
+        }
+    
+
+    
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tabla_reporte_turnoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_reporte_turnoMousePressed
+        // TODO add your handling code here:
+        fila_seleccionada=tabla_reporte_turno.getSelectedRow();
+    }//GEN-LAST:event_tabla_reporte_turnoMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbTurno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -226,7 +405,6 @@ public class Turno_IU extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_reporte_turno;
-    private javax.swing.JButton txtBuscar;
     private javax.swing.JTextField txtDni;
     private javax.swing.JTextField txtHoraFinal;
     private javax.swing.JTextField txtHoraInicio;

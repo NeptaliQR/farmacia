@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author labor
+ * @author el chico anime
  */
 public class TipoUsuario_IU extends javax.swing.JInternalFrame {
 

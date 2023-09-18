@@ -5,8 +5,11 @@
         <group>
             <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaPresentacion/Menu.java</file>
             <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaNegocio/TipoUsuarioBD.java</file>
-            <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaConexion/Conexion.java</file>
+            <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaPresentacion/Usuario_IU.java</file>
+            <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaNegocio/UsuarioBD.java</file>
+            <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaPresentacion/Turno_IU.java</file>
             <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaPresentacion/TipoUsuario_IU.java</file>
+            <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaNegocio/TurnoBD.java</file>
         </group>
     </open-files>
 </project-private>
