@@ -7,6 +7,8 @@ package CapaPresentacion;
 import CapaDatos.Turno;
 import CapaNegocio.TurnoBD;
 import CapaNegocio.UsuarioBD;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -117,6 +119,23 @@ public class Turno_IU extends javax.swing.JInternalFrame {
 
         jLabel1.setText("DNI:");
 
+        txtDni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDniFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDniFocusLost(evt);
+            }
+        });
+        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDniKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDniKeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("USUARIO:");
 
         txtUsuario.setEditable(false);
@@ -167,7 +186,35 @@ public class Turno_IU extends javax.swing.JInternalFrame {
 
         jLabel3.setText("HORA DE INICIO:");
 
+        txtHoraInicio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtHoraInicioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtHoraInicioFocusLost(evt);
+            }
+        });
+        txtHoraInicio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHoraInicioKeyPressed(evt);
+            }
+        });
+
         jLabel4.setText("HORA FINAL:");
+
+        txtHoraFinal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtHoraFinalFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtHoraFinalFocusLost(evt);
+            }
+        });
+        txtHoraFinal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHoraFinalKeyPressed(evt);
+            }
+        });
 
         jLabel5.setText("TURNO:");
 
@@ -247,6 +294,11 @@ public class Turno_IU extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tabla_reporte_turno);
 
         btnCerrar.setText("CERRAR");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -387,6 +439,72 @@ public class Turno_IU extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         fila_seleccionada=tabla_reporte_turno.getSelectedRow();
     }//GEN-LAST:event_tabla_reporte_turnoMousePressed
+
+    private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnBuscar.requestFocus();
+        }
+        
+    }//GEN-LAST:event_txtDniKeyPressed
+
+    private void txtHoraInicioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraInicioKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtHoraFinal.requestFocus();
+        }
+    }//GEN-LAST:event_txtHoraInicioKeyPressed
+
+    private void txtHoraFinalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraFinalKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnRegistrar.requestFocus();
+        }
+    }//GEN-LAST:event_txtHoraFinalKeyPressed
+
+    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || txtDni.getText().length() >= 8) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDniKeyTyped
+
+    private void txtDniFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDniFocusGained
+        // TODO add your handling code here:
+        txtDni.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtDniFocusGained
+
+    private void txtDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDniFocusLost
+        // TODO add your handling code here:
+        txtDni.setBackground(Color.white);
+    }//GEN-LAST:event_txtDniFocusLost
+
+    private void txtHoraInicioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHoraInicioFocusGained
+        // TODO add your handling code here:
+        txtHoraInicio.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtHoraInicioFocusGained
+
+    private void txtHoraInicioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHoraInicioFocusLost
+        // TODO add your handling code here:
+        txtHoraInicio.setBackground(Color.white);
+    }//GEN-LAST:event_txtHoraInicioFocusLost
+
+    private void txtHoraFinalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHoraFinalFocusGained
+        // TODO add your handling code here:
+        txtHoraFinal.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtHoraFinalFocusGained
+
+    private void txtHoraFinalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHoraFinalFocusLost
+        // TODO add your handling code here:
+        txtHoraFinal.setBackground(Color.white);
+    }//GEN-LAST:event_txtHoraFinalFocusLost
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -23,6 +23,7 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
     public TipoUsuario_IU() {
         initComponents();
         reportar();
+        txtNombre.requestFocus();
     }
 
     private void reportar() {
@@ -96,6 +97,11 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
         jLabel1.setText("CODIGO:");
 
         txtCodigo.setEditable(false);
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
+            }
+        });
 
         jLabel2.setText("NOMBRE:");
 
@@ -110,6 +116,9 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNombreKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
             }
         });
 
@@ -398,6 +407,22 @@ public class TipoUsuario_IU extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             txtNombre.requestFocus();
+        }
+    }//GEN-LAST:event_txtCodigoKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

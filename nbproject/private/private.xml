@@ -8,8 +8,10 @@
             <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaPresentacion/Usuario_IU.java</file>
             <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaNegocio/UsuarioBD.java</file>
             <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaPresentacion/Turno_IU.java</file>
+            <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaPresentacion/Marca_IU.java</file>
+            <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaDatos/Marca.java</file>
             <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaPresentacion/TipoUsuario_IU.java</file>
-            <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaNegocio/TurnoBD.java</file>
+            <file>file:/C:/Users/labor/OneDrive/Documentos/NetBeansProjects/FARMACIA/src/CapaNegocio/MarcaBD.java</file>
         </group>
     </open-files>
 </project-private>

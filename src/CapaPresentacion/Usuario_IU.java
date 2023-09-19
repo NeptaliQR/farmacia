@@ -8,8 +8,10 @@ import CapaDatos.TipoUsuario;
 import CapaDatos.Usuario;
 import CapaNegocio.TipoUsuarioBD;
 import CapaNegocio.UsuarioBD;
+import java.awt.Color;
 
 import java.awt.event.ItemEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -134,7 +136,7 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         btnModificsr = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
         txtId_TipoUsuario = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
@@ -162,6 +164,14 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabla_reporte_usuarios);
 
+        txtBuscar_Apellidos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBuscar_ApellidosFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBuscar_ApellidosFocusLost(evt);
+            }
+        });
         txtBuscar_Apellidos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtBuscar_ApellidosKeyPressed(evt);
@@ -174,15 +184,114 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
 
         jLabel1.setText("DNI:");
 
+        txtDni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDniFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDniFocusLost(evt);
+            }
+        });
+        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDniKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDniKeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("NOMBRES:");
+
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNombreFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreFocusLost(evt);
+            }
+        });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("APELLIDOS:");
 
+        txtApellidos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtApellidosFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtApellidosFocusLost(evt);
+            }
+        });
+        txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidosKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("DIRECCION:");
+
+        txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDireccionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDireccionFocusLost(evt);
+            }
+        });
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("CLAVE:");
 
+        txtClave.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtClaveFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtClaveFocusLost(evt);
+            }
+        });
+        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtClaveKeyPressed(evt);
+            }
+        });
+
         jLabel6.setText("CELULAR:");
+
+        txtCelular.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCelularFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCelularFocusLost(evt);
+            }
+        });
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCelularKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
 
         jLabel7.setText("TIPO:");
 
@@ -300,10 +409,15 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cross.png"))); // NOI18N
-        jButton5.setText("CERRAR");
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cross.png"))); // NOI18N
+        btnCerrar.setText("CERRAR");
+        btnCerrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCerrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -319,7 +433,7 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(btnCerrar)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -327,7 +441,7 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
+                    .addComponent(btnCerrar)
                     .addComponent(jButton4)
                     .addComponent(btnEliminar)
                     .addComponent(btnModificsr)
@@ -618,15 +732,175 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_txtBuscar_ApellidosKeyPressed
 
+    private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtNombre.requestFocus();
+        }
+    }//GEN-LAST:event_txtDniKeyPressed
+
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtApellidos.requestFocus();
+        }
+    }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void txtApellidosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtDireccion.requestFocus();
+        }
+    }//GEN-LAST:event_txtApellidosKeyPressed
+
+    private void txtDireccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtClave.requestFocus();
+        }
+    }//GEN-LAST:event_txtDireccionKeyPressed
+
+    private void txtClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtCelular.requestFocus();
+        }
+    }//GEN-LAST:event_txtClaveKeyPressed
+
+    private void txtCelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnRegistrar.requestFocus();
+        }
+    }//GEN-LAST:event_txtCelularKeyPressed
+
+    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || txtDni.getText().length() >= 8) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDniKeyTyped
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || txtCelular.getText().length() >= 9) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCelularKeyTyped
+
+    private void txtDniFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDniFocusGained
+        // TODO add your handling code here:
+         txtDni.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtDniFocusGained
+
+    private void txtDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDniFocusLost
+        // TODO add your handling code here:
+         txtDni.setBackground(Color.white);
+    }//GEN-LAST:event_txtDniFocusLost
+
+    private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
+        // TODO add your handling code here:
+         txtNombre.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtNombreFocusGained
+
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+        // TODO add your handling code here:
+         txtNombre.setBackground(Color.white);
+    }//GEN-LAST:event_txtNombreFocusLost
+
+    private void txtApellidosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidosFocusGained
+        // TODO add your handling code here:
+         txtApellidos.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtApellidosFocusGained
+
+    private void txtApellidosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidosFocusLost
+        // TODO add your handling code here:
+         txtApellidos.setBackground(Color.white);
+    }//GEN-LAST:event_txtApellidosFocusLost
+
+    private void txtDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusGained
+        // TODO add your handling code here:
+         txtDireccion.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtDireccionFocusGained
+
+    private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
+        // TODO add your handling code here:
+         txtDireccion.setBackground(Color.white);
+    }//GEN-LAST:event_txtDireccionFocusLost
+
+    private void txtClaveFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtClaveFocusGained
+        // TODO add your handling code here:
+         txtClave.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtClaveFocusGained
+
+    private void txtClaveFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtClaveFocusLost
+        // TODO add your handling code here:
+         txtClave.setBackground(Color.white);
+    }//GEN-LAST:event_txtClaveFocusLost
+
+    private void txtCelularFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusGained
+        // TODO add your handling code here:
+         txtApellidos.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtCelularFocusGained
+
+    private void txtCelularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusLost
+        // TODO add your handling code here:
+         txtApellidos.setBackground(Color.white);
+    }//GEN-LAST:event_txtCelularFocusLost
+
+    private void txtBuscar_ApellidosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscar_ApellidosFocusGained
+        // TODO add your handling code here:
+        txtBuscar_Apellidos.setBackground(Color.yellow);
+    }//GEN-LAST:event_txtBuscar_ApellidosFocusGained
+
+    private void txtBuscar_ApellidosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscar_ApellidosFocusLost
+        // TODO add your handling code here:
+        txtBuscar_Apellidos.setBackground(Color.white);
+    }//GEN-LAST:event_txtBuscar_ApellidosFocusLost
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidosKeyTyped
+
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDireccionKeyTyped
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificsr;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cmbTienda;
     private javax.swing.JComboBox<String> cmbTipoUsuario;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
