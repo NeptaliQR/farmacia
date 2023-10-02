@@ -7,7 +7,6 @@ package CapaNegocio;
 import CapaConexion.Conexion;
 import CapaDatos.Marca;
 
-import com.mysql.cj.jdbc.PreparedStatementWrapper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,12 +22,12 @@ public class MarcaBD {
     private Connection cn = mysql.conectar();
     private String sql;
     
-    public DefaultTableModel reportarMarca() {
+   public DefaultTableModel reportarMarca() {
         DefaultTableModel tabla_temporal;
-        String[] titulos = {"CODIGO", "NOMBRE"};
+        String[] cabesera = {"CODIGO", "NOMBRE"};
         String[] registros = new String[2];
-        tabla_temporal = new DefaultTableModel(null, titulos);
-        sql = "select idmarca,maNombre from marca";
+        tabla_temporal = new DefaultTableModel(null, cabesera);
+        sql = "SELECT idmarca,maNombre from marca";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
@@ -37,11 +36,11 @@ public class MarcaBD {
                 registros[1] = rs.getString("maNombre");
                 tabla_temporal.addRow(registros);
             }
+            return tabla_temporal;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e, "Error al reportar marca", JOptionPane.ERROR_MESSAGE);
-            return null;
+            JOptionPane.showMessageDialog(null, e, "Error al reportar el tipo de usuario", JOptionPane.ERROR_MESSAGE);
+            return tabla_temporal;
         }
-        return tabla_temporal;
     }
 
     public boolean registraMarca(Marca m) {
@@ -61,7 +60,7 @@ public class MarcaBD {
 
     public boolean modificarMarca(Marca m) {
         boolean rpta = false;
-        sql = "";
+        sql = "UPDATE marca SET maNombre=? WHERE idmarca=?";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setString(1, m.getMaNombre());
@@ -78,7 +77,7 @@ public class MarcaBD {
 
     public boolean eliminarMarca(int idmarca) {
         boolean rpta = false;
-        sql = "";
+        sql = "DELETE FROM marca WHERE idmarca=?";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setInt(1, idmarca);
@@ -86,7 +85,7 @@ public class MarcaBD {
             rpta = pst.executeUpdate() == 1 ? true : false;
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e, "Error al modificar marca", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, e, "Error al eliminar marca", JOptionPane.ERROR_MESSAGE);
             return rpta;
         }
         return rpta;
@@ -97,7 +96,7 @@ public class MarcaBD {
         String[] titulos = {"CODIGO", "NOMBRE"};
         String[] registros = new String[2];
         tabla_temporal = new DefaultTableModel(null, titulos);
-        sql = "";
+        sql = "SELECT idmarca,maNombre FROM marca WHERE maNombre LIKE ?";
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
             pst.setString(1, "%" + nombre + "%");

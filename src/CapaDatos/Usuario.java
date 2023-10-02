@@ -15,10 +15,21 @@ public class Usuario {
     private String uDireccion;
     private String uClave;
     private String uCelular;
-    private int uTipo;
+    private int idtipousuario;
     private String tienda;
 
     public Usuario() {
+    }
+
+    public Usuario(String uDni, String uNombre, String uApellidos, String uDireccion, String uClave, String uCelular, int idtipousuario, String tienda) {
+        this.uDni = uDni;
+        this.uNombre = uNombre;
+        this.uApellidos = uApellidos;
+        this.uDireccion = uDireccion;
+        this.uClave = uClave;
+        this.uCelular = uCelular;
+        this.idtipousuario = idtipousuario;
+        this.tienda = tienda;
     }
 
     public String getuDni() {
@@ -69,12 +80,12 @@ public class Usuario {
         this.uCelular = uCelular;
     }
 
-    public int getuTipo() {
-        return uTipo;
+    public int getIdtipousuario() {
+        return idtipousuario;
     }
 
-    public void setuTipo(int uTipo) {
-        this.uTipo = uTipo;
+    public void setIdtipousuario(int idtipousuario) {
+        this.idtipousuario = idtipousuario;
     }
 
     public String getTienda() {

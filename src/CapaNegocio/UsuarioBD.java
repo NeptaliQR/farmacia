@@ -6,11 +6,12 @@ package CapaNegocio;
 
 import CapaConexion.Conexion;
 import CapaDatos.Usuario;
-import com.mysql.cj.protocol.Resultset;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -69,7 +70,7 @@ public class UsuarioBD {
             pst.setString(4, u.getuDireccion());
             pst.setString(5, u.getuClave());
             pst.setString(6, u.getuCelular());
-            pst.setInt(7, u.getuTipo());
+            pst.setInt(7, u.getIdtipousuario());
             pst.setString(8, u.getTienda());
 
             rpta = pst.executeUpdate() == 1 ? true : false;
@@ -93,7 +94,7 @@ public class UsuarioBD {
             pst.setString(3, u.getuDireccion());
             pst.setString(4, u.getuClave());
             pst.setString(5, u.getuCelular());
-            pst.setInt(6, u.getuTipo());
+            pst.setInt(6, u.getIdtipousuario());
             pst.setString(7, u.getTienda());
             pst.setString(8, u.getuDni());
 
@@ -181,6 +182,36 @@ public class UsuarioBD {
 
     }
 
+    public List<Usuario> login(String dni, String clave) {
+        List<Usuario> lista = new ArrayList<>();
+        sql = "select uDni,uNombre,uApellidos,uDireccion,uClave,uCelular,idtipousuario,tienda from usuario "
+                + "where uDni=? and uClave=?";
+        try {
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setString(1, dni);
+            pst.setString(2, clave);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                Usuario o_Usuario = new Usuario();
+
+                o_Usuario.setuDni(rs.getString(1));
+                o_Usuario.setuNombre(rs.getString(2));
+                o_Usuario.setuApellidos(rs.getString(3));
+                o_Usuario.setuDireccion(rs.getString(4));
+                o_Usuario.setuClave(rs.getString(5));
+                o_Usuario.setuCelular(rs.getString(6));
+                o_Usuario.setIdtipousuario(rs.getInt(7));
+                o_Usuario.setTienda(rs.getString(8));
+
+                lista.add(o_Usuario);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e, "error en el login", JOptionPane.ERROR_MESSAGE);
+        }
+        return lista;
+    }
+    
     
     
 }

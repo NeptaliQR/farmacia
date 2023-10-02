@@ -35,6 +35,8 @@ public class Marca {
     public void setMaNombre(String maNombre) {
         this.maNombre = maNombre;
     }
+
+    
     
     
     

@@ -554,7 +554,7 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
                                     oUsuario.setuDireccion(txtDireccion.getText().toUpperCase());
                                     oUsuario.setuClave(txtClave.getText().toUpperCase());
                                     oUsuario.setuCelular(txtCelular.getText());
-                                    oUsuario.setuTipo(Integer.parseInt(txtId_TipoUsuario.getText()));
+                                    oUsuario.setIdtipousuario(Integer.parseInt(txtId_TipoUsuario.getText()));
                                     oUsuario.setTienda(cmbTienda.getSelectedItem().toString());
                                     boolean rpta = oUsuarioBD.registrarUsuario(oUsuario);
                                     if (rpta) {
@@ -632,7 +632,7 @@ public class Usuario_IU extends javax.swing.JInternalFrame {
                                     oUsuario.setuDireccion(txtDireccion.getText().toUpperCase());
                                     oUsuario.setuClave(txtClave.getText());
                                     oUsuario.setuCelular(txtCelular.getText().toUpperCase());
-                                    oUsuario.setuTipo(Integer.parseInt(txtId_TipoUsuario.getText()));
+                                    oUsuario.setIdtipousuario(Integer.parseInt(txtId_TipoUsuario.getText()));
                                     oUsuario.setTienda(cmbTienda.getSelectedItem().toString());
                                     
                                     boolean rpta = oUsuarioBD.modificarUsuario(oUsuario);
